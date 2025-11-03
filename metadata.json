@@ -1,0 +1,7 @@
+{
+  "name": "LearnOS: AI Study Companion",
+  "description": "An AI-powered study companion that transforms study material into personalized learning experiences, including study guides, practice questions, and progress tracking, all processed locally for privacy.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
