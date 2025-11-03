@@ -19,22 +19,20 @@ const App: React.FC = () => {
   const [installPrompt, setInstallPrompt] = useState<any>(null);
 
   useEffect(() => {
-    const handleBeforeInstall = (e: Event) => {
+    const handleInstallPrompt = (e: any) => {
       e.preventDefault();
       setInstallPrompt(e);
     };
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstall as any);
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstall as any);
-    };
+    
+    window.addEventListener('beforeinstallprompt', handleInstallPrompt);
+    return () => window.removeEventListener('beforeinstallprompt', handleInstallPrompt);
   }, []);
 
-  const installApp = async () => {
-    if (!installPrompt) return;
-    await (installPrompt as any).prompt();
-    setInstallPrompt(null);
+  const handleInstall = async () => {
+    if (installPrompt) {
+      await installPrompt.prompt();
+      setInstallPrompt(null);
+    }
   };
 
   useEffect(() => {
@@ -185,24 +183,7 @@ const App: React.FC = () => {
         {renderContent()}
       </main>
       {installPrompt && (
-        <button 
-          onClick={installApp}
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            backgroundColor: '#4F46E5',
-            color: 'white',
-            padding: '12px 16px',
-            borderRadius: '8px',
-            border: 'none',
-            zIndex: 1000,
-            cursor: 'pointer',
-            boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: 600,
-          }}
-        >
+        <button onClick={handleInstall} className="install-btn">
           📱 Install LearnOS
         </button>
       )}
