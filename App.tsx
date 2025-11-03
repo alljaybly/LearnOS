@@ -16,6 +16,26 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [progressHistory, setProgressHistory] = useState<QuizResult[]>([]);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    const handleInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+    
+    window.addEventListener('beforeinstallprompt', handleInstallPrompt);
+    
+    return () => window.removeEventListener('beforeinstallprompt', handleInstallPrompt);
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      setDeferredPrompt(null);
+    }
+  };
 
   useEffect(() => {
     // Check for shared data in URL hash on initial load
@@ -164,6 +184,11 @@ const App: React.FC = () => {
       <main className="container mx-auto p-4 sm:p-6 lg:p-8">
         {renderContent()}
       </main>
+      {deferredPrompt && (
+        <button onClick={handleInstallClick} className="install-btn">
+          📱 Install LearnOS
+        </button>
+      )}
     </div>
   );
 };

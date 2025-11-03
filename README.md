@@ -9,7 +9,7 @@
 -   **📸 Photo Study Planner (OCR)**: Snap a picture of your textbook or handwritten notes, and LearnOS will use OCR to extract the text and generate a structured, day-by-day study plan with clear objectives and time estimates.
 -   **📊 Progress Analytics**: Tracks your quiz performance over time. Review your history, see your scores, and identify areas where you need more focus.
 -   **🔗 Shareable Content**: Easily share your generated study guides with classmates or study groups via a unique, shareable link.
--   **🌐 Offline-First PWA**: Works offline as a Progressive Web App (PWA), ensuring you can access your study materials anytime, anywhere, without an internet connection.
+-   **📱 Add to Home Screen**: On supported mobile devices, you can easily add LearnOS to your home screen for quick, app-like access.
 -   **🔒 Privacy-Focused**: Your study material is processed to generate guides and quizzes and is not stored long-term.
 
 ## 🛠️ Tech Stack
@@ -17,7 +17,6 @@
 -   **Frontend**: [React](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/)
 -   **AI Model**: [Google Gemini API](https://ai.google.dev/gemini-api) (`@google/genai`)
 -   **OCR**: [Tesseract.js](https://tesseract.projectnaptha.com/) for client-side text recognition.
--   **PWA**: Service Workers for offline caching and a Web App Manifest for installability.
 
 ## 🚀 Getting Started
 
@@ -35,9 +34,6 @@ The project is organized with a clear and scalable structure:
 
 ```
 /
-├── public/
-│   ├── manifest.json
-│   └── service-worker.js
 ├── src/
 │   ├── components/
 │   │   ├── Dashboard.tsx

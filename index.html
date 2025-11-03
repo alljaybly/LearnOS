@@ -5,8 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LearnOS: AI Study Companion</title>
-    <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#4F46E5" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -30,6 +31,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      .install-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #4F46E5;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 9999px;
+        border: none;
+        z-index: 1000;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        font-family: 'Inter', sans-serif;
+      }
+      .install-btn:hover {
+        transform: scale(1.05);
+      }
+      /* Ensure touch-friendly buttons for accessibility */
+      button, [role="button"] {
+        min-height: 44px;
+      }
+    </style>
   <script type="importmap">
 {
   "imports": {
