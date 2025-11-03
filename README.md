@@ -9,7 +9,6 @@
 -   **📸 Photo Study Planner (OCR)**: Snap a picture of your textbook or handwritten notes, and LearnOS will use OCR to extract the text and generate a structured, day-by-day study plan with clear objectives and time estimates.
 -   **📊 Progress Analytics**: Tracks your quiz performance over time. Review your history, see your scores, and identify areas where you need more focus.
 -   **🔗 Shareable Content**: Easily share your generated study guides with classmates or study groups via a unique, shareable link.
--   **📱 Add to Home Screen**: On supported mobile devices, you can easily add LearnOS to your home screen for quick, app-like access.
 -   **🔒 Privacy-Focused**: Your study material is processed to generate guides and quizzes and is not stored long-term.
 
 ## 🛠️ Tech Stack
