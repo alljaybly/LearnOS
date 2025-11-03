@@ -16,25 +16,25 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [progressHistory, setProgressHistory] = useState<QuizResult[]>([]);
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
 
   useEffect(() => {
-    const handleInstallPrompt = (e: Event) => {
+    const handleBeforeInstall = (e: Event) => {
       e.preventDefault();
-      setDeferredPrompt(e);
+      setInstallPrompt(e);
     };
-    
-    window.addEventListener('beforeinstallprompt', handleInstallPrompt);
-    
-    return () => window.removeEventListener('beforeinstallprompt', handleInstallPrompt);
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstall as any);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstall as any);
+    };
   }, []);
 
-  const handleInstallClick = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      setDeferredPrompt(null);
-    }
+  const installApp = async () => {
+    if (!installPrompt) return;
+    await (installPrompt as any).prompt();
+    setInstallPrompt(null);
   };
 
   useEffect(() => {
@@ -184,8 +184,25 @@ const App: React.FC = () => {
       <main className="container mx-auto p-4 sm:p-6 lg:p-8">
         {renderContent()}
       </main>
-      {deferredPrompt && (
-        <button onClick={handleInstallClick} className="install-btn">
+      {installPrompt && (
+        <button 
+          onClick={installApp}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            backgroundColor: '#4F46E5',
+            color: 'white',
+            padding: '12px 16px',
+            borderRadius: '8px',
+            border: 'none',
+            zIndex: 1000,
+            cursor: 'pointer',
+            boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 600,
+          }}
+        >
           📱 Install LearnOS
         </button>
       )}
